@@ -36,6 +36,7 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -i inventory main-remote.yml
+#test
 # Sequential workflow
 workflows:
   # Name the workflow
