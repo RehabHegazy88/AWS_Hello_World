@@ -36,7 +36,8 @@ jobs:
       - run:
           name: Configure server
           command: |
-             ansible-playbook -i inventory main-remote.yml  --private-key ubuntoKey.pem
+             ansible-playbook main-remote.yml -i inventory --private-key ubuntoKey.pem
+
 #test
 # Sequential workflow
 workflows:
