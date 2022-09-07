@@ -48,16 +48,12 @@ jobs:
           name: Configure server
           command: |
              ansible-playbook main-remote.yml -i inventory 
-  # Exercise: Smoke Testing
-  smoke_test_destroy:
-    docker:
-      - image: alpine:latest
-    steps:
       - run:
           name: Test job
           # Fail the job intentionally to simulate an error.
           command:  return 1
       - destroy_environment  
+  # Exercise: Smoke Testing
   smoke_test:
     docker:
       - image: alpine:latest
@@ -82,5 +78,4 @@ workflows:
     jobs:
      #- smoke_test
      #- configure_infrastructure
-     - create_infrastructure
-     - smoke_test_destroy
+     - create_infrastructure 
