@@ -32,7 +32,11 @@ jobs:
           name: Install dependencies
           command: |
             # install the dependencies needed for your playbook
-            apk add --update ansible 
+            apk add--no-cache aws-cli
+            pip install --upgrade pip
+            python3 -m pip install ansible
+            ansible --version
+            apk add openssh-client
       - run:
           name: Configure server
           command: |
