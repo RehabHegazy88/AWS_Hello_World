@@ -30,6 +30,11 @@ jobs:
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1
+        - run:
+            name: Test job
+            # Fail the job intentionally to simulate an error.
+            command:  return 1
+        - destroy_environment  
   # Exercise: Config and Deployment
   configure_infrastructure: 
     docker:
@@ -48,11 +53,7 @@ jobs:
           name: Configure server
           command: |
              ansible-playbook main-remote.yml -i inventory 
-      - run:
-          name: Test job
-          # Fail the job intentionally to simulate an error.
-          command:  return 1
-      - destroy_environment  
+      
   # Exercise: Smoke Testing
   smoke_test:
     docker:
